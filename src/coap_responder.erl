@@ -34,6 +34,8 @@ notify(Uri, Resource) ->
 
 init([Channel, Uri]) ->
     % the receiver will be determined based on the URI
+    % start the default pg scope
+    _ = pg:start_link(),
     case coap_server_registry:get_handler(Uri) of
         {Prefix, Module, Args} ->
             Channel ! {responder_started},
