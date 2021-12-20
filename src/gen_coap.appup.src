@@ -1,10 +1,15 @@
 %% -*-: erlang -*-
 {"0.4.2",
    [
-    %% no appup for 0.4.1 and 0.4.0, only deps changes made
+    {<<"0\\.4\\.[0-1]*">>,
+     [{load_module,coap_client,brutal_purge,soft_purge,[]},
+      {load_module,core_link,brutal_purge,soft_purge,[]}]},
     {<<".*">>, []}
    ],
    [
+    {<<"0\\.4\\.[0-1]*">>,
+     [{load_module,coap_client,brutal_purge,soft_purge,[]},
+      {load_module,core_link,brutal_purge,soft_purge,[]}]},
     {<<".*">>, []}
    ]
 }.
