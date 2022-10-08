@@ -108,7 +108,6 @@ handle_cast({send_response, Message, Receiver}, State) ->
 handle_cast(shutdown, State) ->
     {stop, normal, State};
 handle_cast(Request, State) ->
-    io:fwrite("coap_channel unknown cast ~p~n", [Request]),
     {noreply, State}.
 
 transport_new_request(Message, Receiver, State=#state{tokens=Tokens}) ->
@@ -167,7 +166,6 @@ handle_info({ssl_closed, _Sock}, State) ->
     {stop, normal, State};
 
 handle_info(Info, State) ->
-    io:fwrite("unexpected massage ~p~n", [Info]),
     {noreply, State}.
 
 code_change(_OldVsn, State, _Extra) ->
@@ -200,8 +198,8 @@ handle_datagram(BinMessage= <<?VERSION:2, 0:1, _:1, TKL:4, _Code:8, MsgId:16, To
                 error ->
                     % token was not recognized
                     BinReset = coap_message_parser:encode(#coap_message{type=reset, id=MsgId}),
-                    io:fwrite("<- reset~n"),
-                    esockd_send(Socket, ChId, BinReset)
+                    esockd_send(Socket, ChId, BinReset),
+                    {stop, normal, State}
             end
     end;
 % incoming ACK(2) or RST(3) to a request or response
