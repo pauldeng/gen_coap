@@ -107,7 +107,7 @@ handle_cast({send_response, Message, Receiver}, State) ->
     transport_response(Message, Receiver, State);
 handle_cast(shutdown, State) ->
     {stop, normal, State};
-handle_cast(Request, State) ->
+handle_cast(_Request, State) ->
     {noreply, State}.
 
 transport_new_request(Message, Receiver, State=#state{tokens=Tokens}) ->
@@ -165,7 +165,7 @@ handle_info({inet_reply, _Sock, ok}, State) ->
 handle_info({ssl_closed, _Sock}, State) ->
     {stop, normal, State};
 
-handle_info(Info, State) ->
+handle_info(_Info, State) ->
     {noreply, State}.
 
 code_change(_OldVsn, State, _Extra) ->
