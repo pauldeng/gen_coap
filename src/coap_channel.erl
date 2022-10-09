@@ -211,8 +211,8 @@ handle_datagram(BinMessage= <<?VERSION:2, _:2, _TKL:4, _Code:8, MsgId:16, _/byte
             error -> undefined; % ignore unexpected responses
             {ok, TrState} -> coap_transport:received(BinMessage, TrState)
         end);
-% silently ignore other versions
-handle_datagram(<<Ver:2, _/bytes>>, State) when Ver /= ?VERSION ->
+% silently ignore other packets
+handle_datagram(_, State) ->
     {noreply, State}.
 
 %%--------------------------------------------------------------------
