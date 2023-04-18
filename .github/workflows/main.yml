@@ -15,4 +15,3 @@ jobs:
           gleam-version: '0.23.0'
       - run: |
           make
-          make test

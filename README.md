@@ -1,4 +1,4 @@
-# Generic Erlang CoAP Client/Server [![Build status](https://github.com/emqx/gen_coap/actions/workflows/main.yaml/badge.svg)](https://github.com/emqx/gen_coap/actions/workflows/main.yaml)
+# Generic Erlang CoAP Client/Server [![Build status](https://github.com/emqx/gen_coap/actions/workflows/main.yml/badge.svg)](https://github.com/emqx/gen_coap/actions/workflows/main.yml)
 
 Pure Erlang implementation of the Constrained Application Protocol (CoAP),
 which aims to be conformant with:
